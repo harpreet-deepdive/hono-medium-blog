@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `Post` ADD COLUMN `fullCnt` VARCHAR(4000) NULL;
