@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useRef } from "react";
+import { FC, useCallback, useRef } from "react";
 
 import { createReactEditorJS } from "react-editor-js";
 
@@ -19,7 +19,7 @@ interface EditorCore {
 }
 
 interface EditorProps {
-  defaultData: DataProp;
+  defaultData?: DataProp;
   sendData: (savedData: object) => void;
 }
 
@@ -41,6 +41,7 @@ const TailwindEditor: FC<EditorProps> = ({ defaultData, sendData }) => {
       <div className="border rounded-xl p-2 bg-gray-50 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 ">
         <ReactEditorJS
           onInitialize={handleInitialize}
+          // @ts-ignore
           tools={EDITOR_JS_TOOLS}
           i18n={{
             messages: {},

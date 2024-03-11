@@ -1,4 +1,4 @@
-import { Button, Label, Select, TextInput, Textarea } from "flowbite-react";
+import { Button, Label, TextInput, Textarea } from "flowbite-react";
 import TailwindEditor from "../components/editor";
 import { FormEvent, useState } from "react";
 import axios from "axios";
