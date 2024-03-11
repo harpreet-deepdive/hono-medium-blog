@@ -1,7 +1,5 @@
 import { Button, Navbar, DarkThemeToggle } from "flowbite-react";
-import { useEffect } from "react";
 import { Link, useLinkClickHandler } from "react-router-dom";
-import useLoadingBar from "../shared/hooks/useLoadingBar";
 
 export interface AppNavLinkProps {
   to: string;

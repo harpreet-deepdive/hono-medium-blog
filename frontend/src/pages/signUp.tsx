@@ -1,4 +1,4 @@
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import { FormEvent, useState } from "react";
 import { SignUpType } from "@harpreetsinghsandhu/common-app";
 import axios from "axios";

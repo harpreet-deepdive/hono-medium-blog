@@ -1,4 +1,3 @@
-import { Badge } from "flowbite-react";
 import { useBlogs } from "../shared/hooks/useBlogs";
 import { Link } from "react-router-dom";
 
@@ -69,7 +68,7 @@ const Blogs = () => {
 
           <ul className="flex flex-col gap-12">
             {loading &&
-              [1, 2, 3, 4, 5, 6].map((skel) => (
+              [1, 2, 3, 4, 5, 6].map((_skel) => (
                 <div className="">
                   <div className="h-2 w-24 mb-10 bg-gray-200 rounded-full dark:bg-gray-700 "></div>
 
