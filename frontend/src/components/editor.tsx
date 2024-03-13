@@ -38,9 +38,10 @@ const TailwindEditor: FC<EditorProps> = ({ defaultData, sendData }) => {
   }, []);
   return (
     <>
-      <div className="border rounded-xl p-2 bg-gray-50 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 ">
+      <div className="border editor--wrapper rounded-xl p-2 bg-gray-50 dark:text-gray-400 dark:border-gray-600 dark:bg-gray-700 ">
         <ReactEditorJS
           onInitialize={handleInitialize}
+          placeholder="press '/' for commands"
           // @ts-ignore
           tools={EDITOR_JS_TOOLS}
           i18n={{
