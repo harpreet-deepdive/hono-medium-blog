@@ -1,4 +1,4 @@
-import { Button, Navbar, DarkThemeToggle } from "flowbite-react";
+import { Navbar, DarkThemeToggle } from "flowbite-react";
 import { Link, useLinkClickHandler } from "react-router-dom";
 
 export interface AppNavLinkProps {
