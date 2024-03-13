@@ -29,16 +29,9 @@ const NavbarTop = () => {
           </Link>
         </Navbar.Brand>
         <div className="flex items-center gap-3 lg:order-2">
-          <Button
-            color="gray"
-            href="/signin"
-            className="border-0 hover:bg-gray-50 focus:ring-gray-300 dark:text-white dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
-          >
-            Log in
-          </Button>
-          <Button color="info" href="#">
-            Get started
-          </Button>
+          <AppNavLink to="/signin" text="Log In" />
+          <AppNavLink to="/signup" text="Sign Up" />
+
           <DarkThemeToggle />
           <Navbar.Toggle theme={{ icon: "h-5 w-5 shrink-0" }} />
         </div>
