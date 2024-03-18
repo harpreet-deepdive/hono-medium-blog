@@ -87,7 +87,7 @@ userRouter.post("/signin", async (c, next) => {
         email,
       },
       select: {
-        password: true,
+        id: true,
       },
     });
 
