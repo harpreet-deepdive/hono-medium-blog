@@ -3,12 +3,12 @@ import TailwindEditor from "../components/editor";
 import { FormEvent, useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { DataProp } from "editorjs-blocks-react-renderer";
 
 const EditBlog = () => {
   const params = useParams();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formValues, setFormValues] = useState<{
     title: string;
@@ -64,7 +64,7 @@ const EditBlog = () => {
     e.preventDefault();
 
     try {
-      await axios.put(
+      const res = await axios.put(
         `${BACKEND_URL}/api/v1/blog`,
         {
           id: blogId,
@@ -79,7 +79,9 @@ const EditBlog = () => {
         }
       );
 
-      navigate("/");
+      console.log(res);
+
+      // navigate("/");
     } catch (error) {}
   }
   return (

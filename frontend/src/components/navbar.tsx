@@ -1,5 +1,6 @@
-import { Navbar, DarkThemeToggle } from "flowbite-react";
+import { Navbar, DarkThemeToggle, Button } from "flowbite-react";
 import { Link, useLinkClickHandler } from "react-router-dom";
+import { useSession } from "../shared/hooks/useSession";
 
 export interface AppNavLinkProps {
   to: string;
@@ -17,9 +18,13 @@ function AppNavLink(props: AppNavLinkProps) {
 }
 
 const NavbarTop = () => {
+  const { token, logout } = useSession();
   return (
     <div className="dark:bg-slate-900">
-      <Navbar className="max-w-screen-xl mx-auto dark:bg-slate-900" fluid>
+      <Navbar
+        className="max-w-screen-xl uppercase mx-auto dark:bg-slate-900"
+        fluid
+      >
         <Navbar.Brand href="/">
           <Link
             to={"/"}
@@ -28,10 +33,15 @@ const NavbarTop = () => {
             OUTStanding
           </Link>
         </Navbar.Brand>
-        <div className="flex items-center gap-3 lg:order-2">
-          <AppNavLink to="/signin" text="Log In" />
-          <AppNavLink to="/signup" text="Sign Up" />
-
+        <div className="flex items-center list-none gap-3 lg:order-2">
+          {!token ? (
+            <>
+              <AppNavLink to="/signin" text="Log In" />
+              <AppNavLink to="/signup" text="Sign Up" />
+            </>
+          ) : (
+            <Button onClick={logout}> Log Out</Button>
+          )}
           <DarkThemeToggle />
           <Navbar.Toggle theme={{ icon: "h-5 w-5 shrink-0" }} />
         </div>

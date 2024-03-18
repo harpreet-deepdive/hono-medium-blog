@@ -21,9 +21,12 @@ const SignIn = () => {
         formInputs
       );
 
+      console.log(res);
+
       const jwt = res.data.token;
       localStorage.setItem("jwt", jwt);
-      navigate("/");
+
+      window.location.reload();
     } catch (error) {}
   }
 
@@ -72,27 +75,7 @@ const SignIn = () => {
                   type="password"
                 />
               </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-start">
-                  <div className="flex h-5 items-center">
-                    <Checkbox id="remember-background" required />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <Label
-                      htmlFor="remember-background"
-                      className="text-gray-500 dark:text-gray-300"
-                    >
-                      Remember me
-                    </Label>
-                  </div>
-                </div>
-                <a
-                  href="#"
-                  className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-                >
-                  Forgot password?
-                </a>
-              </div>
+
               <Button type="submit" className="w-full">
                 Log in to your account
               </Button>
