@@ -1,12 +1,10 @@
 import { SigninType } from "@harpreetsinghsandhu/common-app";
-import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import { Button, Label, TextInput } from "flowbite-react";
 import { FormEvent, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../config";
 import axios from "axios";
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const [formInputs, setFormInputs] = useState<SigninType>({
     email: "",
     password: "",
