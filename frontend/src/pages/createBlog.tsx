@@ -14,7 +14,6 @@ const CreateBlog = () => {
   });
 
   function handleData(data: object) {
-
     setFormValues({ ...formValues, content: data });
   }
 
@@ -22,7 +21,7 @@ const CreateBlog = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
+      await axios.post(
         `${BACKEND_URL}/api/v1/blog`,
         {
           title: formValues.title,
@@ -35,7 +34,6 @@ const CreateBlog = () => {
           },
         }
       );
-
 
       navigate("/");
     } catch (error) {}
