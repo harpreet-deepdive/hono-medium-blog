@@ -79,7 +79,6 @@ const EditBlog = () => {
         }
       );
 
-      console.log(res);
 
       // navigate("/");
     } catch (error) {}

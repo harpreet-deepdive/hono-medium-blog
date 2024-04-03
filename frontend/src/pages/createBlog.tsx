@@ -14,7 +14,6 @@ const CreateBlog = () => {
   });
 
   function handleData(data: object) {
-    console.log(data);
 
     setFormValues({ ...formValues, content: data });
   }
@@ -37,7 +36,6 @@ const CreateBlog = () => {
         }
       );
 
-      console.log(res.data);
 
       navigate("/");
     } catch (error) {}

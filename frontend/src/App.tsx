@@ -11,7 +11,6 @@ import { useSession } from "./shared/hooks/useSession";
 function App() {
   const { token } = useSession();
 
-  console.log(token);
 
   return (
     <>

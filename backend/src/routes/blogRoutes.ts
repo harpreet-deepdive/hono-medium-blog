@@ -166,7 +166,6 @@ blogRouter.put("/", async (c) => {
       return c.json({ error: "Invalid Input,Please try again." });
     }
 
-    console.log(body, userId);
 
     const updatedBlog = await prisma.post.update({
       where: {

@@ -19,7 +19,6 @@ const SignIn = () => {
         formInputs
       );
 
-      console.log(res);
 
       const jwt = res.data.token;
       localStorage.setItem("jwt", jwt);
