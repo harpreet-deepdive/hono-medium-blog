@@ -17,6 +17,19 @@ const app = new Hono<{
 
 app.use("/*", cors());
 
+app.get("/", async (c) => {
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  const users = await prisma.user.findMany();
+
+  return c.json({
+    status: "healthy",
+    users,
+  });
+});
+
 app.post("/api/v1/images/upload", async (c) => {
   const body = await c.req.parseBody();
   const { file } = body;

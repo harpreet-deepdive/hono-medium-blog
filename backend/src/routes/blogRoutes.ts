@@ -84,6 +84,83 @@ blogRouter.use("/*", async (c, next) => {
   }
 });
 
+blogRouter.post("/comment", async (c) => {
+  const userId = c.get("userId");
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const body = await c.req.json();
+
+    const comment = await prisma.comment.create({
+      data: {
+        userId,
+        postId: body.postId,
+        text: body.text,
+      },
+    });
+
+    return c.json({
+      id: comment.id,
+    });
+  } catch (err) {
+    console.log(err);
+
+    if (err instanceof HTTPException) {
+      return err.getResponse();
+    }
+
+    return c.json(err);
+  }
+});
+
+blogRouter.post("comment/:commentId/reply", async (c) => {
+  const userId = c.get("userId");
+  const parentCommentId = c.req.param("commentId");
+
+  const prisma = new PrismaClient({
+    datasourceUrl: c.env.DATABASE_URL,
+  }).$extends(withAccelerate());
+
+  try {
+    const body = await c.req.json();
+
+    const comment = await prisma.comment.create({
+      data: {
+        userId,
+        postId: body.postId,
+        text: body.text,
+        parentCommentId: parentCommentId,
+      },
+    });
+
+    await prisma.comment.update({
+      where: {
+        id: parentCommentId,
+      },
+      data: {
+        childComments: {
+          connect: { id: comment.id },
+        },
+      },
+    });
+
+    return c.json({
+      id: comment.id,
+    });
+  } catch (err) {
+    console.log(err);
+
+    if (err instanceof HTTPException) {
+      return err.getResponse();
+    }
+
+    return c.json(err);
+  }
+});
+
 blogRouter.post("/", async (c) => {
   const userId = c.get("userId");
   const prisma = new PrismaClient({
@@ -166,7 +243,6 @@ blogRouter.put("/", async (c) => {
       return c.json({ error: "Invalid Input,Please try again." });
     }
 
-
     const updatedBlog = await prisma.post.update({
       where: {
         id: body.id,
@@ -207,6 +283,31 @@ blogRouter.get("/:id", async (c) => {
       content: true,
       title: true,
       fullCnt: true,
+      comments: {
+        where: { parentCommentId: null },
+        select: {
+          id: true,
+          createdAt: true,
+          downVotes: true,
+          upVotes: true,
+          text: true,
+          childComments: {
+            select: {
+              text: true,
+              postedBy: {
+                select: {
+                  name: true,
+                },
+              },
+            },
+          },
+          postedBy: {
+            select: {
+              name: true,
+            },
+          },
+        },
+      },
       author: {
         select: {
           name: true,
