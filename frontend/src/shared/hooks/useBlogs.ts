@@ -10,6 +10,7 @@ interface Post extends CreatePostType {
     name: string;
   };
   fullCnt: DataProp;
+  comments: [];
 }
 
 export const useBlog = (id: string) => {
