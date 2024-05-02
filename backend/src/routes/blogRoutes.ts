@@ -100,16 +100,43 @@ blogRouter.post("/comment", async (c) => {
         postId: body.postId,
         text: body.text,
       },
+      select: {
+        id: true,
+        createdAt: true,
+        downVotes: true,
+        upVotes: true,
+        text: true,
+        childComments: {
+          select: {
+            text: true,
+            postedBy: {
+              select: {
+                name: true,
+              },
+            },
+          },
+        },
+        postedBy: {
+          select: {
+            name: true,
+          },
+        },
+      },
     });
 
     return c.json({
-      id: comment.id,
+      comment,
     });
-  } catch (err) {
+  } catch (err: any) {
     console.log(err);
 
     if (err instanceof HTTPException) {
       return err.getResponse();
+    }
+
+    if (err.code === "P2002") {
+      c.status(403);
+      return c.json("One User can have only one comment on one post.");
     }
 
     return c.json(err);
@@ -148,7 +175,7 @@ blogRouter.post("comment/:commentId/reply", async (c) => {
     });
 
     return c.json({
-      id: comment.id,
+      comment,
     });
   } catch (err) {
     console.log(err);

@@ -1,8 +1,9 @@
 "use client";
 
 import axios from "axios";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
+import useSocket from "../hooks/useSocket";
 
 const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
   const [currentReply, setCurrentReply] = useState(false);
@@ -32,7 +33,7 @@ const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
 
   return (
     <>
-      <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
+      <article className="p-6 mb-6 text-base bg-transparent rounded-lg dark:bg-black">
         <footer className="flex justify-between items-center mb-2">
           <div className="flex items-center">
             <p className="inline-flex capitalize items-center mr-3 font-semibold text-sm text-gray-900 dark:text-white">
@@ -49,7 +50,7 @@ const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
           <button
             id="dropdownComment1Button"
             data-dropdown-toggle="dropdownComment1"
-            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-500  rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:text-gray-400 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
             type="button"
           >
             <svg
@@ -100,7 +101,7 @@ const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
         </footer>
         <p>{comment.text}</p>
         <br />
-        <div className="flex items-center mt-4 space-x-4">
+        <div className="flex items-center mt-1 space-x-4">
           <button
             onClick={() => {
               setCurrentReply(true);
@@ -155,7 +156,7 @@ const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
             onSubmit={handleReply}
             className={`my-6 ml-12 transition ease-in-out delay-100 will-change-transform origin-top `}
           >
-            <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+            <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200  dark:border-gray-700">
               <label htmlFor="comment" className="sr-only">
                 Your comment
               </label>
@@ -163,7 +164,7 @@ const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
                 id="comment"
                 onChange={(e) => setCurrentText(e.target.value)}
                 rows={6}
-                className="px-0 w-full resize-none text-sm text-gray-900 border-0 focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+                className="px-0 w-full resize-none text-sm text-gray-900 border-0  focus:ring-0 dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
                 placeholder="Write a comment..."
                 required
               ></textarea>
@@ -180,7 +181,10 @@ const Commment = ({ comment, blogId }: { comment: any; blogId: string }) => {
 
       {toggleReplies &&
         comment?.childComments.map((reply: any) => (
-          <article className="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900">
+          <article
+            key={reply.id}
+            className="p-6 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg dark:bg-gray-900"
+          >
             <footer className="flex justify-between items-center mb-2">
               <div className="flex items-center">
                 <p className="inline-flex items-center mr-3 font-semibold text-sm text-gray-900 dark:text-white">
@@ -260,10 +264,21 @@ const CommentSection = ({
   comments: [];
   blogId: string;
 }) => {
+  const [postedComments, setPostedComments] = useState<Object[]>(comments);
+
+  const { socket, message } = useSocket();
+
+  useEffect(() => {
+    if (message !== null) {
+      const comment = message.comment;
+      setPostedComments((prevComments) => [comment].concat(prevComments));
+    }
+  }, [message]);
+
   return (
     <>
-      {comments.map((comment) => (
-        <Commment blogId={blogId} comment={comment} />
+      {postedComments.map((comment: any) => (
+        <Commment key={comment.id} blogId={blogId} comment={comment} />
       ))}
     </>
   );

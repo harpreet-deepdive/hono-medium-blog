@@ -9,6 +9,10 @@
     font-family: "Montserrat", sans-serif;
   }
 
+  body {
+    @apply dark:bg-black bg-gray-300;
+  }
+
   .editor--wrapper h1 {
     @apply text-3xl font-bold;
   }
@@ -31,6 +35,9 @@
   .blog--content p {
     @apply text-[18px] leading-8 py-4;
   }
+  .blog--content > * {
+    @apply text-center;
+  }
 
   .blog--content h1 {
     @apply text-4xl mt-8;
@@ -45,12 +52,12 @@
     @apply w-full my-4;
   }
 
-  .blog--content figcaption {
-    @apply pt-2;
+  .blog--content img {
+    @apply mx-auto;
   }
 
-  body {
-    @apply bg-white dark:bg-gray-900;
+  .blog--content figcaption {
+    @apply pt-2;
   }
 
   pre {
