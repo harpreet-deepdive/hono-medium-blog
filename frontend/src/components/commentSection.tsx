@@ -266,7 +266,7 @@ const CommentSection = ({
 }) => {
   const [postedComments, setPostedComments] = useState<Object[]>(comments);
 
-  const { socket, message } = useSocket();
+  const { message } = useSocket();
 
   useEffect(() => {
     if (message !== null) {
