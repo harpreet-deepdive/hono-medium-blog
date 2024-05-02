@@ -5,9 +5,9 @@ const Blogs = () => {
   const { loading, blogs } = useBlogs();
 
   return (
-    <section className="bg-white  dark:bg-gray-900">
+    <section className="">
       <div className="mx-auto grid max-w-screen-xl gap-8 px-4 py-8 lg:grid-cols-2 lg:gap-16 lg:px-6 lg:py-16 ">
-        <div className="sticky bg-white dark:bg-slate-900 max-sm:static h-min top-11">
+        <div className="sticky max-sm:static h-min top-11">
           <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900  dark:text-white">
             Our Blog
           </h2>
@@ -69,63 +69,16 @@ const Blogs = () => {
           <ul className="flex flex-col gap-12">
             {loading &&
               [1, 2, 3, 4, 5, 6].map((_skel) => (
-                <div className="">
-                  <div className="h-2 w-24 mb-10 bg-gray-200 rounded-full dark:bg-gray-700 "></div>
-
-                  <div className="h-2.5 w-3/4 bg-gray-200 rounded-full dark:bg-gray-700  mb-4"></div>
-                  <div className="h-2.5 w-56 bg-gray-200 rounded-full dark:bg-gray-700  mb-4"></div>
-
-                  <div
-                    role="status"
-                    className="space-y-2.5 animate-pulse max-w-lg"
-                  >
-                    <div className="flex items-center w-full">
-                      <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                    </div>
-                    <div className="flex items-center w-full max-w-[480px]">
-                      <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
-                    </div>
-                    <div className="flex items-center w-full max-w-[400px]">
-                      <div className="h-2.5 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                      <div className="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                    </div>
-                    <div className="flex items-center w-full max-w-[480px]">
-                      <div className="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
-                    </div>
-                    <div className="flex items-center w-full max-w-[440px]">
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-32"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-24"></div>
-                      <div className="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
-                    </div>
-                    <div className="flex items-center w-full max-w-[360px]">
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                      <div className="h-2.5 ms-2 bg-gray-200 rounded-full dark:bg-gray-700 w-80"></div>
-                      <div className="h-2.5 ms-2 bg-gray-300 rounded-full dark:bg-gray-600 w-full"></div>
-                    </div>
-                    <div className="flex pt-[20px] items-center">
-                      <svg
-                        className="w-10 h-10 me-3 text-gray-200 dark:text-gray-700"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
-                      </svg>
-                      <div>
-                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-32 mb-2"></div>
-                        <div className="w-48 h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
-                      </div>
-                    </div>
-                    <span className="sr-only">Loading...</span>
-                  </div>
+                <div className="w-full animate-pulse">
+                  <div className="h-2 w-24 mb-4 bg-zinc-600 rounded-full dark:bg-gray-700 "></div>
+                  <div className="h-3 w-3/4 bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
+                  <div className="h-3 w-1/2 mb-8 bg-zinc-600 rounded-full dark:bg-gray-700 "></div>
+                  <div className="h-2.5 w-full bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
+                  <div className="h-2.5 w-full bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
+                  <div className="h-2.5 w-full bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
+                  <div className="h-2.5 w-full bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
+                  <div className="h-2.5 w-full bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
+                  <div className="h-2.5 w-full bg-zinc-600 rounded-full dark:bg-gray-700  mb-4"></div>
                 </div>
               ))}
           </ul>

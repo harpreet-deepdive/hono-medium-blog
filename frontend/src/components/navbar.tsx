@@ -19,18 +19,19 @@ function AppNavLink(props: AppNavLinkProps) {
 
 const NavbarTop = () => {
   const { token, logout } = useSession();
+
   return (
-    <div className="dark:bg-slate-900">
+    <div className="dark:bg-black">
       <Navbar
-        className="max-w-screen-xl uppercase mx-auto dark:bg-slate-900"
+        className="max-w-screen-xl bg-inherit dark:bg-black capitalize mx-auto"
         fluid
       >
         <Navbar.Brand href="/">
           <Link
             to={"/"}
-            className="self-center text-2xl font-extrabold whitespace-nowrap  dark:text-white"
+            className="self-center text-xl font-bold whitespace-nowrap  dark:text-white"
           >
-            OUTStanding
+            out<span className="text-3xl">S</span>tanding
           </Link>
         </Navbar.Brand>
         <div className="flex items-center list-none gap-3 lg:order-2">

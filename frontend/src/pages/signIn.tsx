@@ -19,12 +19,13 @@ const SignIn = () => {
         formInputs
       );
 
-
       const jwt = res.data.token;
       localStorage.setItem("jwt", jwt);
 
       window.location.reload();
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
